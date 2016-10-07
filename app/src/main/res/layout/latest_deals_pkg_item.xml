@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <android.support.v7.widget.CardView
+        app:cardCornerRadius="10dp"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+                      android:orientation="vertical"
+                      android:layout_height="match_parent">
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/dealImg"
+                android:layout_weight="1"
+                android:background="@drawable/ic_logo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                <TextView
+                    android:textColor="@color/colorPrimary"
+                    android:text="Dubai with Ferrari World"
+                    android:textSize="22sp"
+                    android:layout_width="match_parent"
+                          android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/dayAndNightsTv"
+                    android:layout_width="match_parent"
+                          android:alpha=".9"
+                          android:textSize="18sp"
+                          android:text="05 days 04 nights"
+                          android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:paddingTop="6dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                              android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/stayInCityTv"
+                        android:textSize="18sp"
+                        android:alpha="0.68"
+                        android:layout_width="match_parent"
+                        android:text="4 night in Dubai"
+                              android:layout_height="wrap_content"/>
+                    <View
+                        android:background="#5000"
+
+                        android:alpha="0.5"
+                        android:layout_width="match_parent" android:layout_height="1dp">
+
+                    </View>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:paddingTop="6dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tourAndTransfersTv"
+                        android:alpha="0.68"
+                        android:textSize="18sp"
+                        android:layout_width="match_parent"
+                        android:text="Ferrari World Tours And transfers."
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:background="#5000"
+                        android:alpha="0.5"
+
+                        android:layout_width="match_parent" android:layout_height="1dp">
+
+                    </View>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:paddingTop="6dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/hotelTypeTv"
+                        android:alpha="0.68"
+                        android:textSize="18sp"
+                        android:layout_width="match_parent"
+                        android:text="3 star Hotel."
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:background="#5000"
+                        android:alpha="0.5"
+                        android:layout_width="match_parent" android:layout_height="1dp">
+
+                    </View>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:paddingTop="6dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/hasAirportTransferTv"
+                        android:alpha="0.68"
+                        android:textSize="18sp"
+                        android:layout_width="match_parent"
+                        android:text="Airport Transfers."
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:background="#5000"
+                        android:alpha="0.5"
+                        android:layout_width="match_parent" android:layout_height="1dp">
+
+                    </View>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

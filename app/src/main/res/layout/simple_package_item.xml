@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="1dp"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:transitionName="transitionTourPkgIV"
+            android:layout_height="wrap_content"
+            android:id="@+id/packageIV"/>
+
+        <RelativeLayout
+            android:background="@drawable/black_shadow"
+            android:padding="10dp"
+            android:layout_alignBottom="@id/packageIV"
+            android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:layout_alignParentEnd="true"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="$31"
+                android:textStyle="bold"
+                android:id="@+id/packagePriceTv"
+                android:layout_alignParentRight="true"/>
+            <TextView
+                android:layout_toLeftOf="@id/packagePriceTv"
+                android:textColor="#fff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Hotel Days Inn"
+                android:id="@+id/packageNameTv"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

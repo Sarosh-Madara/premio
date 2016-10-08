@@ -60,7 +60,7 @@ public class PackagesRecyclerAdapter extends RecyclerView.Adapter<PackagesRecycl
 
         holder.title.setText(tit);
         holder.price.setText(mCountryPackageArrayList.get(position).getPrice());
-        Picasso.with(mContext).load(mCountryPackageArrayList.get(position).getPimage()).resize(400,210).into(holder.mImageView);
+        Picasso.with(mContext).load(mCountryPackageArrayList.get(position).getPimage()).resize(400,240).into(holder.mImageView);
 
     }
 

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,6 +33,7 @@ import com.saroshmadara.root.premiotravelsandtours.R;
 import com.saroshmadara.root.premiotravelsandtours.model.CountryPackage;
 import com.saroshmadara.root.premiotravelsandtours.rest.Handlers;
 import com.saroshmadara.root.premiotravelsandtours.ui.activity.PackageDetailActivity;
+import com.saroshmadara.root.premiotravelsandtours.ui.adapter.EndlessRecyclerViewScrollListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,10 +57,11 @@ public class PackagesListFragment extends Fragment {
     private static final String TAG = PackagesListFragment.class.getSimpleName();
     RecyclerView packageRecyclerView;
     private PackagesRecyclerAdapter mAdapter;
-    private String mPackagesStream;
     private ProgressDialog mDialog;
     private ActionBar actionBar;
     private ArrayList<CountryPackage> mCountryPackages = new ArrayList<>();
+    private SwipeRefreshLayout mSwipeRefreshLayout ;
+    private ArrayList<CountryPackage> totalPkgs=new ArrayList<>();
 
     public PackagesListFragment() {
         // Required empty public constructor
@@ -78,6 +81,15 @@ public class PackagesListFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         packageRecyclerView.setLayoutManager(manager);
         fetchRecommendedPackages();
+        packageRecyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(manager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount) {
+
+                Log.d(TAG,"load more called:: page: "+page+" totalItems: "+totalItemsCount);
+                mSwipeRefreshLayout.setRefreshing(true);
+                fetchRecommendedPackages();
+            }
+        });
 
 
 
@@ -91,8 +103,20 @@ public class PackagesListFragment extends Fragment {
 
     private void init(View view) {
         packageRecyclerView = (RecyclerView) view.findViewById(R.id.packagesRecyclerView);
+        mAdapter = new PackagesRecyclerAdapter(getContext(), totalPkgs);
+        packageRecyclerView.setAdapter(mAdapter);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe);
+        mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.yellow));
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
+            @Override
+            public void onRefresh() {
+                Log.d(TAG,"refresing");
+                fetchRecommendedPackages();
+            }
+        });
     }
+
 
 
     @Override
@@ -230,6 +254,12 @@ public class PackagesListFragment extends Fragment {
                         countryPackage.setStay(packageObj.getString("Stay"));
                         countryPackage.setHotel(packageObj.getString("Hotel"));
                         countryPackage.setTerms(packageObj.getString("Terms and Conditions"));
+                        countryPackage.setDcontcity(packageObj.getString("dcontcity"));
+                        countryPackage.setDestcont(packageObj.getString("DestinationCountry"));
+                        countryPackage.setDestcity(packageObj.getString("DestinationCity"));
+                        countryPackage.setMinallow(packageObj.getString("Minallow"));
+                        countryPackage.setTicket(packageObj.getString("ticket"));
+                        countryPackage.setVisa(packageObj.getString("visa"));
 
 //                        Log.d("testp",packageObj.getString("Stay")+packageObj.getString("Hotel")+packageObj.getString("Facilities"));
 
@@ -241,12 +271,24 @@ public class PackagesListFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                mAdapter = new PackagesRecyclerAdapter(getContext(),mCountryPackages);
-                packageRecyclerView.setAdapter(mAdapter);
+
+                if(mCountryPackages.size() > 0) {
+                    totalPkgs.addAll(mCountryPackages);
+                    offset = mCountryPackages.size();
+                    mCountryPackages.clear();
+//                    mAdapter = new PackagesRecyclerAdapter(getContext(), mCountryPackages);
+//                    packageRecyclerView.setAdapter(mAdapter);
+                    mAdapter.notifyItemRangeInserted(totalPkgs.size(),offset);
+                }
+
+                mSwipeRefreshLayout.setRefreshing(false);
+
+
+
                 mAdapter.setListener(new PackagesRecyclerAdapter.PackageItemClickListener() {
                     @Override
                     public void onPackageItemClick(CountryPackage aPackage, View view) {
-                        Log.d(TAG,"Package Name: "+aPackage.getTitle());
+//                        Log.d(TAG,"Package Name: "+aPackage.getTitle());
                         Intent intent = new Intent(getContext(), PackageDetailActivity.class);
                         intent.putExtra("EXTRA_PKG",aPackage);
                         ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),view.findViewById(R.id.packageIV),"transitionTourPkgIV");
@@ -266,4 +308,5 @@ public class PackagesListFragment extends Fragment {
 
     }
 
+    int offset;
 }

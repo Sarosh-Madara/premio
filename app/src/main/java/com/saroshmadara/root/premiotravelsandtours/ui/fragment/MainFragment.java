@@ -39,6 +39,7 @@ import com.saroshmadara.root.premiotravelsandtours.rest.Handlers;
 import com.saroshmadara.root.premiotravelsandtours.slider.ChildAnimationExample;
 import com.saroshmadara.root.premiotravelsandtours.slider.TransformerAdapter;
 import com.saroshmadara.root.premiotravelsandtours.ui.activity.MainActivity;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -83,24 +84,33 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
 
     private void setUpSlider() {
 
-//        HashMap<String,String> url_maps = new HashMap<String, String>();
-//        url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
-//        url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
-//        url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
-//        url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
+        HashMap<String,String> url_maps = new HashMap<String, String>();
+        url_maps.put("Welcome To Premio Travels", "http://res.cloudinary.com/wear-n-care/image/upload/v1475964563/welcome_sdik7j.jpg");
+        url_maps.put("Holiday Tours", "http://res.cloudinary.com/wear-n-care/image/upload/v1475964558/holidaytour_obthh2.jpg");
+        url_maps.put("Cruise Packages", "http://res.cloudinary.com/wear-n-care/image/upload/v1475964569/cruisepkgs_hccmgp.jpg");
+        url_maps.put("Tours Available", "http://res.cloudinary.com/wear-n-care/image/upload/v1475964554/touravail_w4fhiq.jpg");
+        url_maps.put("Umrah Packages","http://res.cloudinary.com/wear-n-care/image/upload/v1475964566/umrah2016_wa555g.jpg");
+        url_maps.put("Hotel Rooms Available","http://res.cloudinary.com/wear-n-care/image/upload/v1475964563/hotelrooms_v7abnx.jpg");
 
         HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
-        file_maps.put("Dubai Tour",R.drawable.img1);
-        file_maps.put("Tour of 5 Countries",R.drawable.img2);
-        file_maps.put("Singapore Tour",R.drawable.img3);
-        file_maps.put("Malaysia Tour", R.drawable.img4);
+        file_maps.put("Welcome To Premio Travels",R.drawable.img1);
+        file_maps.put("Holiday Tours",R.drawable.img2);
+        file_maps.put("Cruise Packages",R.drawable.img3);
+        file_maps.put("Tours Available", R.drawable.img4);
+        file_maps.put("Umrah Packages", R.drawable.img4);
+        file_maps.put("Hotel Rooms Available", R.drawable.img4);
 
-        for(String name : file_maps.keySet()){
+        for(String name : url_maps.keySet()){
             TextSliderView textSliderView = new TextSliderView(getContext());
             // initialize a SliderLayout
+
+            Picasso picasso = Picasso.with(getContext());
+                    picasso.load(file_maps.get(name));
+
+
             textSliderView
                     .description(name)
-                    .image(file_maps.get(name))
+                    .image(url_maps.get(name))
                     .setScaleType(BaseSliderView.ScaleType.Fit)
                     .setOnSliderClickListener(this);
 
@@ -116,7 +126,7 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
             mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Default);
             mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
             mDemoSlider.setCustomAnimation(new DescriptionAnimation());
-            mDemoSlider.setDuration(4000);
+            mDemoSlider.setDuration(2500);
             mDemoSlider.addOnPageChangeListener(this);
 
         }

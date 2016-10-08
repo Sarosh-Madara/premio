@@ -5,12 +5,20 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 tools:context="com.saroshmadara.root.premiotravelsandtours.ui.fragment.PackagesListFragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/packagesRecyclerView"
-        app:layoutManager="LinearLayoutManager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <android.support.v4.widget.SwipeRefreshLayout android:layout_width="match_parent"
+                                                  android:id="@+id/swipe"
+                                                  android:layout_height="wrap_content">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/packagesRecyclerView"
+            app:layoutManager="LinearLayoutManager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
 
 </RelativeLayout>

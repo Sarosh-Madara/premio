@@ -1,8 +1,7 @@
 package com.saroshmadara.root.premiotravelsandtours.ui.activity;
 
-import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
-import android.support.v4.app.NavUtils;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.aakira.expandablelayout.ExpandableLayoutListener;
-import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.saroshmadara.root.premiotravelsandtours.R;
 import com.saroshmadara.root.premiotravelsandtours.model.CountryPackage;
@@ -24,8 +22,9 @@ public class PackageDetailActivity extends AppCompatActivity {
 
     private static final String TAG = PackageDetailActivity.class.getSimpleName();
     AppBarLayout mAppBarLayout;
+    CollapsingToolbarLayout mToolbarLayout;
     CountryPackage mPackage;
-    TextView mFacilitiesTv,mStayTv,mHotelTv,mTermsTv;
+    TextView mFacilitiesTv, mdestinationTv, mdepartureTv,mTermsTv,mVisaIncludedTv,mTicketIncludedTv,mMinAllowedTv;
     ImageView mOpenerTv,mOpener2;
     ExpandableRelativeLayout mExpandableLayout,mExpandableLayout2;
 
@@ -35,12 +34,31 @@ public class PackageDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_package_detail);
         mPackage = (CountryPackage) getIntent().getSerializableExtra("EXTRA_PKG");
 
+        final Toolbar toolbar = (Toolbar)findViewById(R.id.detail_toolbar);
         mAppBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
+        mToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+
+        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
+                if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
+                    // Collapsed
+                    mToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.black));
+                } else if (verticalOffset == 0) {
+                    // Expanded
+                    mToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.white));
+                } else {
+                    // Somewhere in between
+                }
+            }
+        });
 
 
-        Toolbar toolbar = (Toolbar)mAppBarLayout.findViewById(R.id.detail_toolbar);
         ImageView imageView = (ImageView) findViewById(R.id.toolbarIv);
         Picasso.with(this).load(mPackage.getPimage()).into(imageView);
+
+
 
         setSupportActionBar(toolbar);
 
@@ -52,19 +70,41 @@ public class PackageDetailActivity extends AppCompatActivity {
         }
 
         mFacilitiesTv = (TextView) findViewById(R.id.facilitiesTv);
-        mHotelTv = (TextView) findViewById(R.id.hotelTv);
-        mStayTv = (TextView) findViewById(R.id.stayTv);
+        mdepartureTv = (TextView) findViewById(R.id.departureTv);
+        mdestinationTv = (TextView) findViewById(R.id.destinationTv);
         mTermsTv= (TextView) findViewById(R.id.termsAndCond);
+        mVisaIncludedTv = (TextView) findViewById(R.id.visaIncludedTv);
+        mTicketIncludedTv = (TextView) findViewById(R.id.ticketsPkgTv);
+        mMinAllowedTv = (TextView) findViewById(R.id.minAllowTv);
+
+
+        mVisaIncludedTv.setText(makeUpperCase(mPackage.getVisa()));
+        mTicketIncludedTv.setText(makeUpperCase(mPackage.getTicket()));
+        mMinAllowedTv.setText(makeUpperCase(mPackage.getMinallow())+" minimum allowed");
+
 
         String temp = mPackage.getFacilities();
         if(temp.contains(","))
-        temp = temp.replace(",","\n> ");
+        temp = temp.replace(',','\n');
 
-        temp = "> "+temp;
+//        temp = "> "+temp;
         mFacilitiesTv.setText(temp);
 
-        mHotelTv.setText(mPackage.getHotel());
-        mStayTv.setText(mPackage.getStay());
+        mdepartureTv.setText(mPackage.getDcontcity());
+
+        int countriesLen = mPackage.getDestcont().split(",").length;
+        int cityLen = mPackage.getDestcity().split(",").length;
+        if (countriesLen == cityLen) {
+//            Log.d(TAG,"len equal");
+            String[] cities = mPackage.getDestcity().split(",");
+            String[] countries = mPackage.getDestcont().split(",");
+            StringBuilder builder = new StringBuilder();
+            for (int i=0; i<cityLen;i++)
+                if(i == cityLen-1) builder.append(cities[i]+", "+countries[i]);
+                else builder.append(cities[i]+", "+countries[i]+"\n");
+
+            mdestinationTv.setText(builder);
+        }
 
         mTermsTv.setText(getFormatedTerms(mPackage.getTerms()));
 
@@ -161,7 +201,17 @@ public class PackageDetailActivity extends AppCompatActivity {
 
 
 
+    }
 
+    private String  makeUpperCase(String visa) {
+        if(visa.length()>0){
+
+            char firstChar = visa.charAt(0);
+            char newChar = String.valueOf( firstChar).toUpperCase().charAt(0);
+
+            return visa.replace(visa.charAt(0),newChar);
+        }
+        return "Not Included";
     }
 
     private CharSequence getFormatedTerms(String terms) {
@@ -178,7 +228,8 @@ public class PackageDetailActivity extends AppCompatActivity {
         int id  = item.getItemId();
         switch (id){
             case android.R.id.home:
-                NavUtils.navigateUpTo(this, getIntent());
+                finish();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

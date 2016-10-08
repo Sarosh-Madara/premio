@@ -100,6 +100,8 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
         file_maps.put("Umrah Packages", R.drawable.img4);
         file_maps.put("Hotel Rooms Available", R.drawable.img4);
 
+        // loading images through uri
+
         for(String name : url_maps.keySet()){
             TextSliderView textSliderView = new TextSliderView(getContext());
             // initialize a SliderLayout

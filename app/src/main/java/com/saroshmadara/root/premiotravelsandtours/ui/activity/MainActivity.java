@@ -16,14 +16,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+import com.saroshmadara.root.premiotravelsandtours.Helper.Methods;
 import com.saroshmadara.root.premiotravelsandtours.R;
 import com.saroshmadara.root.premiotravelsandtours.ui.fragment.MainFragment;
 import com.saroshmadara.root.premiotravelsandtours.ui.fragment.PackagesListFragment;
 import com.saroshmadara.root.premiotravelsandtours.ui.fragment.VisaFragment;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    MainActivity mContext;
 
     private FragmentManager mFragmentManager;
 
@@ -31,17 +35,19 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        mContext = this;
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                Methods.contactUs(mContext);
             }
         });
 
@@ -70,6 +76,11 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            FragmentManager manager = getSupportFragmentManager();
+            if(manager.getBackStackEntryCount() > 0){
+                manager.popBackStack();
+            }
+            else
             super.onBackPressed();
         }
     }
@@ -105,24 +116,32 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_countries_packages) {
-            Toast.makeText(getApplicationContext(),"huuuhh",Toast.LENGTH_SHORT).show();
             mFragmentManager.beginTransaction().replace(R.id.content_scrolling,new PackagesListFragment()).commit();
 
 
-        } else if (id == R.id.nav_latest_deals) {
-
-        } else if (id == R.id.nav_umrah_packages) {
-
-        } else if (id == R.id.nav_visas) {
-            mFragmentManager.beginTransaction().replace(R.id.content_scrolling,new VisaFragment()).commit();
-
-        }else if(id == R.id.nav_events) {
-
-        }else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_contact_us) {
+        } else if (id == R.id.nav_home) {
+            setTitle("Home");
+            mFragmentManager.beginTransaction().replace(R.id.content_scrolling,new MainFragment())
+                    .commit();
+        }
+//        else if (id == R.id.nav_latest_deals) {
+//
+//        } else if (id == R.id.nav_umrah_packages) {
+//
+//        }
+        else if (id == R.id.nav_visas) {
+            mFragmentManager.beginTransaction().replace(R.id.content_scrolling, new VisaFragment()).commit();
 
         }
+//        else if(id == R.id.nav_events) {
+//
+//        }
+         else if (id == R.id.nav_share) {
+            Toast.makeText(mContext,"We are working on it!",Toast.LENGTH_SHORT).show();
+                }
+         else if (id == R.id.nav_contact_us) {
+            Methods.contactUs(mContext);
+                }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -4,6 +4,7 @@ package com.saroshmadara.root.premiotravelsandtours.ui.fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -39,6 +40,7 @@ import com.saroshmadara.root.premiotravelsandtours.rest.Handlers;
 import com.saroshmadara.root.premiotravelsandtours.slider.ChildAnimationExample;
 import com.saroshmadara.root.premiotravelsandtours.slider.TransformerAdapter;
 import com.saroshmadara.root.premiotravelsandtours.ui.activity.MainActivity;
+import com.saroshmadara.root.premiotravelsandtours.ui.activity.PackageDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -202,6 +204,21 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
                         JSONObject packageObj = packages.getJSONObject(i);
                         countryPackage.setTitle(packageObj.getString("Name"));
                         countryPackage.setPrice(packageObj.getString("Price"));
+                        countryPackage.setFacilities(packageObj.getString("Facilities"));
+                        countryPackage.setStay(packageObj.getString("Stay"));
+                        countryPackage.setHotel(packageObj.getString("Hotel"));
+                        countryPackage.setTerms(packageObj.getString("Terms and Conditions"));
+                        countryPackage.setDcontcity(packageObj.getString("dcontcity"));
+                        countryPackage.setDestcont(packageObj.getString("DestinationCountry"));
+                        countryPackage.setDestcity(packageObj.getString("DestinationCity"));
+                        countryPackage.setMinallow(packageObj.getString("Minallow"));
+                        countryPackage.setTicket(packageObj.getString("ticket"));
+                        countryPackage.setVisa(packageObj.getString("visa"));
+
+//                        Log.d("testp",packageObj.getString("Stay")+packageObj.getString("Hotel")+packageObj.getString("Facilities"));
+
+                        String imageURL = "http://www.premiotravels.com/im/package/"+packageObj.getString("Category")+"/"+packageObj.getString("Pimage");
+                        countryPackage.setPimage(imageURL);
 
 
                         // pick an local image for tour
@@ -219,6 +236,16 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
                 PackagesRecyclerAdapter adapter = new PackagesRecyclerAdapter(getContext(),mCountryPackages);
                 mLatestDealRecyclerView.setAdapter(adapter);
 
+                adapter.setListener(new PackagesRecyclerAdapter.PackageItemClickListener() {
+                    @Override
+                    public void onPackageItemClick(CountryPackage aPackage, View view) {
+                        Intent intent = new Intent(getContext(), PackageDetailActivity.class);
+                        intent.putExtra("EXTRA_PKG",aPackage);
+                        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),view.findViewById(R.id.packageIV),"transitionTourPkgIV");
+                        startActivity(intent,activityOptionsCompat.toBundle());
+                    }
+                });
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -228,7 +255,6 @@ public class MainFragment extends Fragment implements BaseSliderView.OnSliderCli
         });
 
         requestQueue.add(jsonObjectRequest);
-
     }
 
     private String pickLocalImageForTour(String category,String name) {

@@ -1,9 +1,11 @@
 package com.saroshmadara.root.premiotravelsandtours.model;
 
+import java.io.Serializable;
+
 /**
  * Created by root on 8/18/16.
  */
-public class CountryVisa {
+public class CountryVisa implements Serializable{
     String name;
     int flagId;
     String description;

@@ -24,6 +24,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
+
     <include layout="@layout/content_scrolling"
 
     />
@@ -35,6 +36,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:layout_behavior="com.saroshmadara.root.premiotravelsandtours.ui.adapter.ScrollingFABBehavior"
-        android:src="@android:drawable/ic_dialog_email" />
+        android:src="@mipmap/ic_phone_white" />
 
 </android.support.design.widget.CoordinatorLayout>

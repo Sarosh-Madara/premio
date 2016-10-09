@@ -9,10 +9,20 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_premio"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
+        <!-- Fabric.io begins here-->
+        <!--<meta-data-->
+            <!--android:name="io.fabric.ApiKey"-->
+            <!--android:value="551959bbcaf7b9a735ff583f0d8540c8d0ce709c"-->
+        <!--/>-->
+
+        <!-- Fabric.io ends here-->
+
         <activity
             android:name=".ui.activity.MainActivity"
             android:label="@string/app_name"
@@ -28,6 +38,9 @@
             android:name=".ui.activity.PackageDetailActivity">
             <!--<meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".ui.activity.MainActivity"/>-->
         </activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="551959bbcaf7b9a735ff583f0d8540c8d0ce709c" />
     </application>
 
 </manifest>

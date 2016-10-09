@@ -2,6 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_home"
+              android:icon="@drawable/ic_home"
+              android:title="Home"/>
         <item
             android:id="@+id/nav_countries_packages"
             android:icon="@mipmap/packages"
@@ -10,18 +13,18 @@
             android:id="@+id/nav_visas"
             android:icon="@mipmap/visa_filled"
             android:title="Visas" />
-        <item
-            android:id="@+id/nav_umrah_packages"
-            android:icon="@mipmap/kaaba"
-            android:title="Umrah Packages" />
-        <item
-            android:id="@+id/nav_latest_deals"
-            android:icon="@mipmap/deals"
-            android:title="Latest Deals" />
-        <item
-            android:id="@+id/nav_events"
-            android:icon="@mipmap/events"
-            android:title="Events"/>
+        <!--<item-->
+            <!--android:id="@+id/nav_umrah_packages"-->
+            <!--android:icon="@mipmap/kaaba"-->
+            <!--android:title="Umrah Packages" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_latest_deals"-->
+            <!--android:icon="@mipmap/deals"-->
+            <!--android:title="Latest Deals" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_events"-->
+            <!--android:icon="@mipmap/events"-->
+            <!--android:title="Events"/>-->
     </group>
 
     <item android:title="Communicate">

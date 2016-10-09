@@ -1,7 +1,10 @@
 package com.saroshmadara.root.premiotravelsandtours.ui.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,10 +13,12 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.aakira.expandablelayout.ExpandableLayoutListener;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
+import com.saroshmadara.root.premiotravelsandtours.Helper.Methods;
 import com.saroshmadara.root.premiotravelsandtours.R;
 import com.saroshmadara.root.premiotravelsandtours.model.CountryPackage;
 import com.squareup.picasso.Picasso;
@@ -27,12 +32,24 @@ public class PackageDetailActivity extends AppCompatActivity {
     TextView mFacilitiesTv, mdestinationTv, mdepartureTv,mTermsTv,mVisaIncludedTv,mTicketIncludedTv,mMinAllowedTv;
     ImageView mOpenerTv,mOpener2;
     ExpandableRelativeLayout mExpandableLayout,mExpandableLayout2;
+    LinearLayout mCallLinLayout;
+
+    PackageDetailActivity mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package_detail);
         mPackage = (CountryPackage) getIntent().getSerializableExtra("EXTRA_PKG");
+        mContext = this;
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Methods.contactUs(mContext);
+            }
+        });
 
         final Toolbar toolbar = (Toolbar)findViewById(R.id.detail_toolbar);
         mAppBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
@@ -51,6 +68,14 @@ public class PackageDetailActivity extends AppCompatActivity {
                 } else {
                     // Somewhere in between
                 }
+            }
+        });
+
+        mCallLinLayout= (LinearLayout) findViewById(R.id.callLinLayout);
+        mCallLinLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Methods.contactUs(mContext);
             }
         });
 

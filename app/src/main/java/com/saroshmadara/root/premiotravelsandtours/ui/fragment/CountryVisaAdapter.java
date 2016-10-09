@@ -26,7 +26,11 @@ public class CountryVisaAdapter extends RecyclerView.Adapter<CountryVisaAdapter.
     // setting up listener
     private OnVisaItemClickListener mListener;
 
-    public CountryVisaAdapter(Context ctx,ArrayList<CountryVisa> visas) {
+    public void setListener(OnVisaItemClickListener listener) {
+        mListener = listener;
+    }
+
+    public CountryVisaAdapter(Context ctx, ArrayList<CountryVisa> visas) {
         data = visas;
         mContext =ctx;
         mLayoutInflater = LayoutInflater.from(mContext);

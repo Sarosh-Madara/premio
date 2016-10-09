@@ -1,0 +1,176 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent" android:orientation="vertical"
+
+             tools:context="com.saroshmadara.root.premiotravelsandtours.ui.fragment.VisaDetailFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/countryIcon"
+            android:padding="10dp"
+            android:src="@mipmap/chinaflag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="#000"
+            android:id="@+id/countryName"
+            android:gravity="center_horizontal"
+            android:textSize="28dp"
+            android:fontFamily="casual"
+            android:text="Brazil Visa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_View="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        card_View:cardCornerRadius="5dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="#191479"
+                android:textSize="22dp"
+                android:gravity="center_horizontal"
+                android:fontFamily="monospace"
+                android:text="Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/visaDescription"
+                android:textSize="15dp"
+                android:padding="10dp"
+                android:text=" Indonesia, A Southeast Asian nation made up of thousands of volcanic islands, is home to hundreds of ethnic groups speaking many different languages. It’s is known for its beaches, volcanoes and jungles sheltering elephants, tigers and Komodo dragons. On the island of Java lies Indonesia's vibrant, sprawling capital, Jakarta, and the city of Yogyakarta, known for gamelan music and traditional puppetry."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/termsButton"
+        android:textSize="22sp"
+        android:textAllCaps="false"
+        android:text="@string/terms_condition"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+
+    <!--<ScrollView-->
+
+    <!--android:layout_weight="100"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+
+
+
+    <!--<LinearLayout-->
+    <!--android:orientation="vertical"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!---->
+    <!--<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:card_View="http://schemas.android.com/apk/res-auto"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="8dp"-->
+    <!--card_View:cardCornerRadius="5dp">-->
+    <!--<LinearLayout-->
+    <!--android:orientation="vertical"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<TextView-->
+    <!--android:textColor="#191479"-->
+    <!--android:textSize="22dp"-->
+    <!--android:gravity="center_horizontal"-->
+    <!--android:fontFamily="monospace"-->
+    <!--android:text="Embassy Requirement"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content" />-->
+    <!--<TextView-->
+    <!--android:id="@+id/embassyRequirements"-->
+    <!--android:textSize="15dp"-->
+    <!--android:padding="10dp"-->
+    <!--android:text=" Indonesia, A Southeast Asian nation made up of thousands of volcanic islands, is home to hundreds of ethnic groups speaking many different languages. It’s is known for its beaches, volcanoes and jungles sheltering elephants, tigers and Komodo dragons. On the island of Java lies Indonesia's vibrant, sprawling capital, Jakarta, and the city of Yogyakarta, known for gamelan music and traditional puppetry."-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <!--</LinearLayout>-->
+    <!--</android.support.v7.widget.CardView>-->
+
+    <!--<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:card_View="http://schemas.android.com/apk/res-auto"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="8dp"-->
+    <!--card_View:cardCornerRadius="5dp">-->
+    <!--<LinearLayout-->
+    <!--android:orientation="vertical"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+    <!--<TextView-->
+    <!--android:textColor="#191479"-->
+    <!--android:textSize="22dp"-->
+    <!--android:gravity="center_horizontal"-->
+    <!--android:fontFamily="monospace"-->
+    <!--android:text="Visa Processing Time"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content" />-->
+    <!--<TextView-->
+    <!--android:id="@+id/durationOfStay"-->
+    <!--android:textSize="15dp"-->
+    <!--android:padding="10dp"-->
+    <!--android:text=" Indonesia, A Southeast Asian nation made up of thousands of volcanic islands, is home to hundreds of ethnic groups speaking many different languages. It’s is known for its beaches, volcanoes and jungles sheltering elephants, tigers and Komodo dragons. On the island of Java lies Indonesia's vibrant, sprawling capital, Jakarta, and the city of Yogyakarta, known for gamelan music and traditional puppetry."-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content" />-->
+    <!--</LinearLayout></android.support.v7.widget.CardView>-->
+
+    <!--<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:card_View="http://schemas.android.com/apk/res-auto"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="8dp"-->
+    <!--card_View:cardCornerRadius="5dp">-->
+    <!--<LinearLayout-->
+    <!--android:orientation="vertical"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+    <!--<TextView-->
+    <!--android:textColor="#191479"-->
+    <!--android:textSize="22dp"-->
+    <!--android:gravity="center_horizontal"-->
+    <!--android:fontFamily="monospace"-->
+    <!--android:text="Visa Fee"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content" />-->
+    <!--<TextView-->
+    <!--android:id="@+id/visaFee"-->
+    <!--android:textSize="15dp"-->
+    <!--android:padding="10dp"-->
+    <!--android:text=" Indonesia, A Southeast Asian nation made up of thousands of volcanic islands, is home to hundreds of ethnic groups speaking many different languages. It’s is known for its beaches, volcanoes and jungles sheltering elephants, tigers and Komodo dragons. On the island of Java lies Indonesia's vibrant, sprawling capital, Jakarta, and the city of Yogyakarta, known for gamelan music and traditional puppetry."-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content" />-->
+    <!--</LinearLayout></android.support.v7.widget.CardView>-->
+
+
+    <!--</LinearLayout>-->
+
+
+    <!--</ScrollView>-->
+
+
+</LinearLayout>
